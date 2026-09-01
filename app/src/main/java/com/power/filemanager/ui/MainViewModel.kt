@@ -31,4 +31,14 @@ class MainViewModel(
             }
         }
     }
+
+    fun navigateUp(): Boolean {
+        val currentFile = java.io.File(_currentPath.value)
+        val parent = currentFile.parent
+        if (parent != null && _currentPath.value != "/storage/emulated/0") {
+            loadDirectory(parent)
+            return true
+        }
+        return false
+    }
 }
